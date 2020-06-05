@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 
 import styles from './ItemList.module.scss';
-import withCollapse from '../hoc/withCollapse';
+import withCollapseFC from '../hoc/withCollapseFC';
 
 const items = [
   'Primar lorem ipsum dolor sit amet, consectetur adipiscing elit lorem',
@@ -37,4 +37,4 @@ class ItemsList extends React.Component {
   }
 }
 
-export default withCollapse(ItemsList);
+export default withCollapseFC(ItemsList);
