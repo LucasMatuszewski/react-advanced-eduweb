@@ -4,7 +4,7 @@ import cx from 'classnames';
 import styles from './Columns.module.scss';
 import withCollapse from '../hoc/withCollapse';
 
-const Columns = ({ isCollapsed, toggle }) => {
+const Columns = ({ isCollapsed, toggle, buttonName }) => {
   const listClass = cx(styles.list, {
     [styles.isCollapsed]: isCollapsed === true,
   });
@@ -12,7 +12,7 @@ const Columns = ({ isCollapsed, toggle }) => {
   return (
     <div>
       <button className="button is-dark is-large" onClick={toggle}>
-        Toggle me
+        {buttonName}
       </button>
       <div className={listClass}>Lorem ipsum dolor</div>
     </div>

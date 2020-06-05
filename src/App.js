@@ -12,7 +12,7 @@ function App() {
         <h1 className="title is-1">hello world</h1>
         <ItemsList />
       </div>
-      <Columns />
+      <Columns buttonName="Toggle me" />
     </div>
   );
 }
