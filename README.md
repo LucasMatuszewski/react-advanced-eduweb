@@ -1,3 +1,5 @@
+# Code and Notes to advanced [React Course from Hallo Roman](https://eduweb.pl/programowanie-i-www/reactjs/react-techniki-zaawansowane/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
