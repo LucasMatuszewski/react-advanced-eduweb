@@ -8,6 +8,8 @@ import Columns from './Columns/Columns';
 import RenderProps from './RenderProps/RenderProps';
 import DownshiftAuto from './DownshiftAuto/DownshiftAuto';
 import RefGsap from './RefGsap/RefGsap';
+import CustomHook from './CustomHook/CustomHook';
+import CompoundComponent from './CompoundComponent/CompoundComponent';
 
 function App() {
   return (
@@ -34,6 +36,19 @@ function App() {
       <div className="box">
         <h2 className="title is-2">Ref Hook + Gsap</h2>
         <RefGsap />
+      </div>
+      <div className="box">
+        <h2 className="title is-2">Custom Hook</h2>
+        <CustomHook />
+      </div>
+      <div className="box">
+        <h2 className="title is-2">Compound Components (komponenty złożone)</h2>
+        <p>
+          We use this pattern for internally connected components, usually for
+          some libraries we want to publish on NPM. In normal apps it's usually
+          better to use other patterns.
+        </p>
+        <CompoundComponent />
       </div>
     </>
   );
