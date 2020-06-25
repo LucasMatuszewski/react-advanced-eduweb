@@ -26,11 +26,19 @@ describe("Input component", () => {
 
   it("displays proper label and value", () => {
     const { getByLabelText } = render(<Input name="Name" label="Name" />);
-
     const input = getByLabelText(/name/i);
+
     expect(input).toBeInTheDocument();
 
     fireEvent.change(input, { target: { value: "Roman" } });
     expect(input).toHaveValue("Roman");
+  });
+
+  it("removes numbers from passed value", () => {
+    const { getByLabelText } = render(<Input name="Name" label="Name" />);
+    const input = getByLabelText(/name/i);
+
+    fireEvent.change(input, { target: { value: "roman123-roman!" } });
+    expect(input).toHaveValue("roman-roman!");
   });
 });
