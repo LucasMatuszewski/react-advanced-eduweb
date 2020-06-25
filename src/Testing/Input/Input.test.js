@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import Input from "./Input";
 
@@ -22,5 +22,15 @@ describe("Input component", () => {
   it("Renders input element with default placeholder", () => {
     const { getByPlaceholderText } = render(<Input />);
     expect(getByPlaceholderText("Default placeholder")).toBeInTheDocument();
+  });
+
+  it("displays proper label and value", () => {
+    const { getByLabelText } = render(<Input name="Name" label="Name" />);
+
+    const input = getByLabelText(/name/i);
+    expect(input).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: "Roman" } });
+    expect(input).toHaveValue("Roman");
   });
 });
