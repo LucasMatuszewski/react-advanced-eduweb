@@ -36,7 +36,7 @@ const RenderProps = () => {
       <br />
       <h3 className="title is-3">Render props as a Children</h3>
       <ParentComponent someProps="props passed to parent component">
-        {(data) => <p>{data}</p>}
+        {(data) => <span>{data}</span>}
       </ParentComponent>
       <br />
       <h3 className="title is-3">Render props Collapse</h3>

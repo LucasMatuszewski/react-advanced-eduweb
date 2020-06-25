@@ -100,7 +100,7 @@ const Wizard = ({ children }) => {
   const totalPageNumber = React.Children.map(children, (child) => {
     return child.props.pageIndex ? child : null;
   }).length;
-  console.log('totalPageNumber', totalPageNumber);
+  // console.log('totalPageNumber', totalPageNumber);
   // (second way is to add all indexes to context in Page component and count them)
 
   return (

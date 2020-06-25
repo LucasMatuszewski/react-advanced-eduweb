@@ -1,16 +1,24 @@
+// Article from Kent C. Dodds as inspiration: https://kentcdodds.com/blog/test-isolation-with-react
+
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 
 import Input from "./Input";
+
+const renderInput = (props) => {
+  const utils = render(<Input name="name" label="name" {...props} />);
+  const input = utils.getByLabelText(/name/i);
+  return { ...utils, input };
+};
 
 describe("Input component", () => {
   it("Renders input element with placeholder from props", () => {
     const placeholderText = "Type Your Name";
     // getByTestId & getByPlaceholderText are QUERIES from React Testing Library:
     // https://testing-library.com/docs/dom-testing-library/api-queries
-    const { getByTestId, getByPlaceholderText } = render(
-      <Input placeholder={placeholderText} name="Name" label="Name" />
-    );
+    const { getByTestId, getByPlaceholderText } = renderInput({
+      placeholder: placeholderText,
+    });
 
     // toBeInTheDocument is a Matcher from Jest DOM:
     // https://github.com/testing-library/jest-dom#custom-matchers
@@ -20,13 +28,12 @@ describe("Input component", () => {
   });
 
   it("Renders input element with default placeholder", () => {
-    const { getByPlaceholderText } = render(<Input name="Name" label="Name" />);
+    const { getByPlaceholderText } = renderInput();
     expect(getByPlaceholderText("Default placeholder")).toBeInTheDocument();
   });
 
   it("displays proper label and value", () => {
-    const { getByLabelText } = render(<Input name="Name" label="Name" />);
-    const input = getByLabelText(/name/i);
+    const { input } = renderInput();
 
     expect(input).toBeInTheDocument();
 
@@ -35,18 +42,14 @@ describe("Input component", () => {
   });
 
   it("removes numbers from passed value", () => {
-    const { getByLabelText } = render(<Input name="Name" label="Name" />);
-    const input = getByLabelText(/name/i);
+    const { input } = renderInput();
 
     fireEvent.change(input, { target: { value: "roman123-roman!" } });
     expect(input).toHaveValue("roman-roman!");
   });
 
   it("displays error ONLY when digits are passed", () => {
-    const { getByLabelText, getByText, container } = render(
-      <Input name="Name" label="Name" />
-    );
-    const input = getByLabelText(/name/i);
+    const { input, getByText, container } = renderInput();
 
     // is error visible before event:
     expect(container).not.toHaveTextContent(/error/i);
